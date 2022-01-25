@@ -1,18 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="flex items-center justify-center h-screen">
+    <div>
+      <button 
+        class="py-4 px-2 bg-red-300 border-gray-700 shadow rounded"
+        @click="createSession">
+          Create New Session
+      </button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { createSession } from '@/api/sessions';
 import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 @Options({
   components: {
-    HelloWorld,
   },
 })
-export default class HomeView extends Vue {}
+export default class HomeView extends Vue {
+  sessionId: string | null = null;
+
+  async createSession() {
+    const session = await createSession();
+    this.$router.push({ name: 'session', params: { sessionId: session.sessionId } });
+  }
+}
 </script>
