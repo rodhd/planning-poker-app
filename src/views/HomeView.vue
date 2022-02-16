@@ -9,7 +9,7 @@
             py-4 
             px-2 
             mr-2 
-            bg-red-500 
+            bg-green-500 
             border-gray-700 
             text-white
             font-semibold
@@ -17,7 +17,7 @@
             w-1/2 
             shadow 
             rounded
-            hover:bg-red-300"
+            hover:bg-green-300"
           @click="createSession">
             New Session
         </button>
@@ -38,7 +38,7 @@
             Join Session
         </button>
       </div>
-      <JoinSessionModal :isActive="modalToggled" />
+      <JoinSessionModal :isActive="modalToggled" @closeModal="toggleModal"/>
     </div>
   </div>
 </template>
